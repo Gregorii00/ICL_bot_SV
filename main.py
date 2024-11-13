@@ -7,7 +7,7 @@ from telebot import types
 import datetime
 # модуль для работы с базой данных
 # Вспомогательные данные
-from additional import TOKEN, src_folder_delete, src_files, src_files_samples, src_week_report
+from additional import TOKEN, src_folder_delete, src_files, src_files_samples, src_week_report, src_week_report2
 # Недельный отчет
 from Night.Report import week_report
 # Категории подкатегории
@@ -85,6 +85,8 @@ def report_week(message):
             bot.send_document(message.chat.id, f1)
         with open(src_week_report, 'rb') as f2:
             bot.send_document(message.chat.id, f2)
+        with open(src_week_report2, 'rb') as f3:
+            bot.send_document(message.chat.id, f3)
         delete_files_in_folder()
         files_name.clear()
     else:
