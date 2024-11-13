@@ -88,7 +88,7 @@ def report_week(message):
         delete_files_in_folder()
         files_name.clear()
     else:
-        bot.send_document(message.chat.id, 'Добавьте 3 файла последовательно: \n Завершенные звонки операторов '
+        bot.send_message(message.chat.id, 'Добавьте 3 файла последовательно: \n Завершенные звонки операторов '
                                            'с внесенным Лист2 \n  Файл с производительностью \n'
                                            'Файл с пропущенными')
 
@@ -102,7 +102,7 @@ def report_day(message):
         delete_files_in_folder()
         files_name.clear()
     else:
-        bot.send_document(message.chat.id, 'Добавьте 2 файла последовательно: \n Файл куда добавляются '
+        bot.send_message(message.chat.id, 'Добавьте 2 файла последовательно: \n Файл куда добавляются '
                                            'статистика по категориям \n  Файл скаченный с категориями')
 
 # Статистика по операторам
@@ -114,19 +114,21 @@ def stats_operators_with_missing_bot(message):
         delete_files_in_folder()
         files_name.clear()
     else:
-        bot.send_document(message.chat.id, 'Добавьте 3 файла последовательно: \n Производительность операторов '
+        bot.send_message(message.chat.id, 'Добавьте 3 файла последовательно: \n Производительность операторов '
                                            '\n  Файл с оценками \n'
                                            'Файл с пропущенными')
 
 def coefficients_bot(message):
+    print(len(files_name))
     if len(files_name) == 1:
         result = coefficients(files_name[0])
         bot.send_message(message.chat.id, result)
         delete_files_in_folder()
         files_name.clear()
     else:
-        bot.send_document(message.chat.id, 'Добавьте файл с производительностью операторов в формате csv')
+        bot.send_message(message.chat.id, 'Добавьте файл с производительностью операторов в формате csv')
 def stats_operators_no_missing_bot(message):
+    print(len(files_name))
     if len(files_name) == 3:
         stats_operators_with_missing(files_name[0], files_name[1], files_name[2], False)
         with open(src_files_samples + 'Статистика операторов без пропущенных.xlsx', 'rb') as f1:
@@ -134,7 +136,7 @@ def stats_operators_no_missing_bot(message):
         delete_files_in_folder()
         files_name.clear()
     else:
-        bot.send_document(message.chat.id, 'Добавьте 3 файла последовательно: \n Производительность операторов '
+        bot.send_message(message.chat.id, 'Добавьте 3 файла последовательно: \n Производительность операторов '
                                            '\n  Файл с оценками \n'
                                            'Пустой файл с пропущенными')
 def delete_files_in_folder():
