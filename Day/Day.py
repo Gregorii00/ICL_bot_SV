@@ -137,7 +137,6 @@ def timetable_day(day_plus = 1):
     data_date_time = []
     data_date_night = []
     data_date_night_next = []
-    first_time = 0
     for work_time in date_data[day_now]:
         if work_time not in night:
             if (date_data[day_now].get(work_time)[0] or date_data[day_now].get(work_time)[1]):
