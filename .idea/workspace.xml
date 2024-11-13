@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ReportWeek.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day/Day.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day/Tags_name.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day/Training.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Night/Report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Night/Stats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Night/coefficients.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Night/start.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/additional.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_samples/Итоги 04.11-10.11.2024.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_samples/Некорректные_обращения_04_11_10_11_2024.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_samples/Статистика операторов без пропущенных.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test.py" afterDir="false" />
+    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="First">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +32,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Training.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev_python/ICL/ReportWeek/files_samples&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Training.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/dev_python/ICL/ReportWeek/files_samples"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\dev_python\ICL\ReportWeek\files_samples" />
@@ -111,6 +98,19 @@
       <option name="presentableId" value="Default" />
       <updated>1730680229566</updated>
     </task>
+    <task id="LOCAL-00001" summary="First">
+      <option name="closed" value="true" />
+      <created>1731527041950</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731527041950</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First" />
+    <option name="LAST_COMMIT_MESSAGE" value="First" />
   </component>
 </project>
