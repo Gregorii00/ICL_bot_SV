@@ -202,7 +202,6 @@ def timetable_day(day_plus = 1):
         k.append(data_date_night[i][3])
         data_work_time_night.append(k)
     # Фильтер для дневников
-    print('data_date_time: ', data_date_time)
     worker_filter1 = []
     for i in range(0, 48):
         for worker in data_date_time:
@@ -241,7 +240,6 @@ def timetable_day(day_plus = 1):
     for worker in worker_filter2:
         time_worker_night[worker[2]] = time_worker_night.get(worker[2], '') + worker[3] + '.'
     #     закончилось для ночников
-    print(time_worker)
     for worker in time_worker:
         first_name = str(time_worker[worker]).split('.')
         if first_name[1] == '':
