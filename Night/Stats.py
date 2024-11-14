@@ -1,6 +1,7 @@
 from additional import src_files, src_files_samples
 import openpyxl
 from openpyxl.styles import Font, PatternFill
+import datetime
 def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True):
     FILE_NAME1 = src_files + FILE_NAME4
     FILE_NAME2 = src_files + FILE_NAME5
@@ -19,6 +20,10 @@ def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True
     sheet3 = workbook3["Лист"]
     stats = []
 
+    day_on_week = ["Понедельник, ", "Вторник, ", "Среда, ", "Четверг, ", "Пятница, ", "Суббота, ", "Воскресенье, "]
+    date_now = datetime.datetime.now().date() - datetime.timedelta(1)
+
+
     for i in range(2, 50):
         if sheet1.cell(row=i, column=1).value:
             k = []
@@ -33,7 +38,6 @@ def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True
             k.append(sheet1.cell(row=i, column=9).value)
             k.append(sheet1.cell(row=i, column=10).value)
             stats.append(k)
-
     max_count_id_lider = [0, 0, 0]
     for j in range(3):
         max_count = int(stats[0][1])
@@ -45,7 +49,6 @@ def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True
                     max_count_id = i
             else:
                 if max_count < int(stats[i][1]) and int(stats[i][1]) < int(stats[max_count_id_lider[j-1]][1]):
-                    print(stats[max_count_id_lider[j-1]][1])
                     max_count = int(stats[i][1])
                     max_count_id = i
         max_count_id_lider[j] = max_count_id
@@ -53,11 +56,18 @@ def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True
         for j in range(0, len(stats)):
             if sheet2.cell(row=j+2, column=3).value and sheet2.cell(row=j+2, column=3).value == stats[i][0]:
                 stats[i].append(sheet2.cell(row=j+2, column=4).value)
+    for i in range(0, len(stats)):
+        if len(stats[i])< 11:
+            stats[i].append('0.00')
     if miss:
         for i in range(0, len(stats)):
             for j in range(0, len(stats)):
-                if sheet3.cell(row=j + 2, column=3).value and sheet3.cell(row=j + 2, column=3).value == stats[i][0]:
-                    stats[i].append(sheet3.cell(row=j + 2, column=4).value)
+                if sheet3.cell(row=j + 2, column=1).value and sheet3.cell(row=j + 2, column=1).value == stats[i][0]:
+                    stats[i].append(sheet3.cell(row=j + 2, column=6).value)
+    for i in range(0, len(stats)):
+        if len(stats[i])< 12:
+            stats[i].append(0)
+    sheet.cell(row=1, column=1).value = day_on_week[date_now.weekday()] + f'{date_now.day}.{date_now.month}.{date_now.year}'
     for i in range(0, len(stats)):
         sheet.cell(row=i+3, column=1).value = stats[i][0]
         sheet.cell(row=i+3, column=2).value = stats[i][1]
@@ -92,4 +102,19 @@ def stats_operators_with_missing(FILE_NAME4, FILE_NAME5, FILE_NAME6, miss = True
             sheet.cell(row=i + 3, column=11).fill = PatternFill('solid', fgColor="FFFF00")
         elif float(stats[i][10])<4.0:
             sheet.cell(row=i + 3, column=11).fill = PatternFill('solid', fgColor="FF0000")
+        if miss:
+            if len(stats[i]) == 13:
+                sheet.cell(row=i + 3, column=12).value = stats[i][11] + stats[i][12]
+            else:
+                sheet.cell(row=i + 3, column=12).value = stats[i][11]
+            if sheet.cell(row=i + 3, column=12).value == 0:
+                sheet.cell(row=i + 3, column=12).fill = PatternFill('solid', fgColor="92D050")
+            elif sheet.cell(row=i + 3, column=12).value == 1:
+                sheet.cell(row=i + 3, column=12).fill = PatternFill('solid', fgColor="FFC000")
+            elif sheet.cell(row=i + 3, column=12).value > 1 and sheet.cell(row=i + 3, column=12).value <= 10:
+                sheet.cell(row=i + 3, column=12).fill = PatternFill('solid', fgColor="FFFF00")
+            elif sheet.cell(row=i + 3, column=12).value > 10 and sheet.cell(row=i + 3, column=12).value <= 20:
+                sheet.cell(row=i + 3, column=11).fill = PatternFill('solid', fgColor="FF0000")
+            elif sheet.cell(row=i + 3, column=12).value > 20:
+                sheet.cell(row=i + 3, column=12).fill = PatternFill('solid', fgColor="C00000")
     workbook.save(FILE_STAT_OPER)

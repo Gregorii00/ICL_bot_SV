@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.1.1 view count files">
+    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.1.2 Week report">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Night/Stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/Stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731536340278</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="work 1.1.2 Week report">
+      <option name="closed" value="true" />
+      <created>1731540471982</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731540471982</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -211,6 +221,7 @@
     <MESSAGE value="work 1.0.1" />
     <MESSAGE value="work 1.1.0 view count files" />
     <MESSAGE value="work 1.1.1 view count files" />
-    <option name="LAST_COMMIT_MESSAGE" value="work 1.1.1 view count files" />
+    <MESSAGE value="work 1.1.2 Week report" />
+    <option name="LAST_COMMIT_MESSAGE" value="work 1.1.2 Week report" />
   </component>
 </project>
