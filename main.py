@@ -69,12 +69,14 @@ def handle_docs_photo(message):
         with open(src, 'wb') as new_file:
             new_file.write(downloaded_file)
         bot.reply_to(message, "Сохранен")
+        print(files_name)
         # route(message)
     except Exception as e:
         bot.reply_to(message, e)
 
 # Недельный отчет
 def report_week(message):
+    print(files_name)
     if len(files_name) == 3:
         date_now = datetime.datetime.now() - datetime.timedelta(1)
         date_7 = date_now - datetime.timedelta(6)
@@ -144,6 +146,7 @@ def stats_operators_no_missing_bot(message):
 def delete_files_in_folder():
     for filename in os.listdir(src_folder_delete):
         file_path = os.path.join(src_folder_delete, filename)
+        files_name.clear()
         try:
             if os.path.isfile(file_path):
                 os.remove(file_path)

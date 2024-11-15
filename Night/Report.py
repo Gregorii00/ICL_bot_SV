@@ -114,7 +114,7 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
     ws.cell(row=1, column=10).value = 'AHT сумма'
     ws.cell(row=1, column=11).value = 'Количество звонков'
     ws.cell(row=1, column=12).value = 'AHT'
-    # ws.cell(row=1, column=14).value = 'Пропущенные'
+    ws.cell(row=1, column=14).value = 'Пропущенные'
     ws.cell(row=1, column=15).value = 'Из звонков'
     ws.cell(row=2, column=15).value = negativ_no_recalculation
     ws.cell(row=1, column=16).value = 'Из прослушанных'
@@ -136,10 +136,14 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
         sheet.cell(row=row + 1, column=4).value = operators_sum.get(i, 0) / float(operators.get(i, 0))
         ws.cell(row=row, column=10).value = operators_aht.get(i, 0)
         ws.cell(row=row, column=11).value = operators_aht_coll.get(i, 0)
-        ws.cell(row=row, column=12).value = operators_aht.get(i, 0)/operators_aht_coll.get(i, 0)
-        sheet.cell(row=row + 1, column=2).value = operators_aht.get(i, 0)/operators_aht_coll.get(i, 0)
-        # ws.cell(row=row, column=14).value = operators_missed.get(i, 0)
-        # sheet.cell(row=row + 1, column=5).value = operators_missed.get(i, 0)
+        if operators_aht_coll.get(i, 0) !=0:
+            ws.cell(row=row, column=12).value = operators_aht.get(i, 0)/operators_aht_coll.get(i, 0)
+            sheet.cell(row=row + 1, column=2).value = operators_aht.get(i, 0) / operators_aht_coll.get(i, 0)
+        else:
+            ws.cell(row=row, column=12).value = 0
+            sheet.cell(row=row + 1, column=2).value = 0
+        ws.cell(row=row, column=14).value = operators_missed.get(i, 0)
+        sheet.cell(row=row + 1, column=5).value = operators_missed.get(i, 0)
         row += 1
     teacher2=[]
     if teacher != []:
