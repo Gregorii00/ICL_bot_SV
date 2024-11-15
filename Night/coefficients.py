@@ -12,6 +12,7 @@ def coefficients(File_name):
         day_i = ''
         count = 0
         work_time_name = {}
+        str_result = []
         for row in file_reader:
             # if count >0 and row[0] not in sv_name:
             if count >0:
@@ -86,7 +87,10 @@ def coefficients(File_name):
                         res = float(res + 1)
                         index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0])-1) + ',00'
                     excel_name_coef[work] = index
-                    res_str = f'{work}:   {res}      {index} \n'
+                    space1 = int(31 - len(str(work)))
+                    space2 = 10
+                    res_str = str(work)+ ':' + ('⠀'* space1) + str(res) + '⠀'* space2 + str(index) + '\n'
+                    str_result.append(res_str)
                 elif (data_work_time_day[work] - work_time_name[work][0]) <= 0:
                     res = work_time_name[work][0]
                     if work_time_name[work][1] < 5:
@@ -111,7 +115,10 @@ def coefficients(File_name):
                         res = float(res + 1)
                         index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',00'
                     excel_name_coef[work] = index
-                    res_str = f'{work}:   {res}      {index} \n'
+                    space1 = int(31 - len(str(work)))
+                    space2 = 10
+                    res_str = str(work)+ ':' + ('⠀' * space1) + str(res) + '⠀'* space2 + str(index) + '\n'
+                    str_result.append(res_str)
             else:
                 res = work_time_name[work][0]
                 if work_time_name[work][1] < 5:
@@ -136,6 +143,13 @@ def coefficients(File_name):
                     res = float(res + 1)
                     index = '-0,00'
                 excel_name_coef[work] = index
-                res_str = f'{work}:   {res}      {index} \n'
-            result += res_str
+                space1 = int(31 - len(str(work)))
+                space2  = 15 - len(index)
+                res_str = str(work) + ':' + ('⠀' * space1) + str(res) + '⠀'* space2 + str(index) + '\n'
+                str_result.append(res_str)
+        a_count = 0
+        for a in str_result:
+            a_count+=len(a)
+            result+=a
+        print(a_count)
     return result

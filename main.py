@@ -122,7 +122,9 @@ def stats_operators_with_missing_bot(message):
 # Подсчет коэффициентов из файла
 def coefficients_bot(message):
     if len(files_name) == 1:
+        bot.send_message(message.chat.id, 'Рассчитываем, ожидайте' + u'\U0001F609')
         result = coefficients(files_name[0])
+        print(result)
         bot.send_message(message.chat.id, result)
         delete_files_in_folder()
         files_name.clear()
