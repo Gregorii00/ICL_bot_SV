@@ -4,6 +4,7 @@ import datetime
 import os.path
 from openpyxl.writer.excel import save_workbook
 from additional import src_files, src_week_report, src_week_report2, report_week_name1, report_week_name2
+from Night.wiretapping import excel_scan_wiretapping
 def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
     FILE_NAME1 = src_files + FILE_NAME1
     FILE_NAME2 = src_files + FILE_NAME2
@@ -25,12 +26,10 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
     workbook2 = openpyxl.load_workbook(src_week_report2)
     sheet2 = workbook2["Лист"]
     df = pd.read_excel(FILE_NAME1, sheet_name='Лист')
-    df2 = pd.read_excel(FILE_NAME1, sheet_name='Лист2')
     df_aht = pd.read_excel(FILE_NAME2, sheet_name='Лист')
     df_missed = pd.read_excel(FILE_NAME3, sheet_name='Лист')
     wb = openpyxl.load_workbook(FILE_NAME1)
     df = df[['Время', 'Оператор', 'Оценка']]
-    df2 = df2[['Время', 'Оценка', 'Оператор', 'Итог']]
     df_aht = df_aht[['Оператор', 'Принятые вх.', 'AHT вх., сек']]
     df_missed = df_missed[['Оператор', 'Пропущенные']]
     start = start.replace("-", "")
@@ -41,6 +40,7 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
     del df['Время']
     start = datetime.datetime.strptime(start, "%Y%m%d").date()
     end = datetime.datetime.strptime(end, "%Y%m%d").date()
+
     dates = str(start.day)+'.'+str(start.month) + '-' + str(end.day)+'.'+str(end.month)
     # df = df[(df['Date'] >= start) & (df['Date'] <= end) & (pd.isnull(df['Оценка'])!=True)]
     df = df[(pd.isnull(df['Оценка'])!=True)]
@@ -78,9 +78,6 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
         operators_args[i] = operators_sum.get(i, 0)
     for i in operators:
         operators_args[i] = operators_args.get(i, 0)/operators.get(i, 0)
-    list2 = []
-    for under_tems, tems in df2.items():
-        list2.append(tems)
     list3 = []
     for under_tems, tems in df_aht.items():
         list3.append(tems)
@@ -95,11 +92,18 @@ def week_report(FILE_NAME1, FILE_NAME2, FILE_NAME3, start, end):
     operators_missed = {}
     for i in df_missed.index:
        operators_missed[list4[0][i]] = list4[1][i]
-    for i in range(0, len(list2[3])):
+    start_exel = start.strftime('%d-%m-%Y')
+    end_exel = end.strftime('%d-%m-%Y')
+    list2 = excel_scan_wiretapping(start_exel, end_exel, False)
+    print(list2)
+    # Убираем необоснованные
+    for i in range(0, len(list2)):
         negativ_recalculation+=1
-        if list2[3][i] == 'Необоснованная':
-            operators_sum[list2[2][i]] = operators_sum.get(list2[2][i], 0)-list2[1][i]
-            operators[list2[2][i]] = operators.get(list2[2][i], 0)-1
+        print(list2[i])
+        print(list2[i][0])
+        operators_sum[list2[i][0]] = operators_sum.get(list2[i][0], 0)-list2[i][1]
+        operators[list2[i][0]] = operators.get(list2[i][0], 0)-1
+    print(operators)
     ws = wb.create_sheet(dates)
     ws.cell(row=1, column=1).value = 'Оператор'
     ws.column_dimensions['A'].width = 38

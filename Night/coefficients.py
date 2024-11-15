@@ -87,7 +87,7 @@ def coefficients(File_name):
                         res = float(res + 1)
                         index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0])-1) + ',00'
                     excel_name_coef[work] = index
-                    space1 = int(31 - len(str(work)))
+                    space1 = int(30 - len(str(work)))
                     space2 = 10
                     res_str = str(work)+ ':' + ('⠀'* space1) + str(res) + '⠀'* space2 + str(index) + '\n'
                     str_result.append(res_str)
@@ -115,7 +115,7 @@ def coefficients(File_name):
                         res = float(res + 1)
                         index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',00'
                     excel_name_coef[work] = index
-                    space1 = int(31 - len(str(work)))
+                    space1 = int(30 - len(str(work)))
                     space2 = 10
                     res_str = str(work)+ ':' + ('⠀' * space1) + str(res) + '⠀'* space2 + str(index) + '\n'
                     str_result.append(res_str)
@@ -143,7 +143,7 @@ def coefficients(File_name):
                     res = float(res + 1)
                     index = '-0,00'
                 excel_name_coef[work] = index
-                space1 = int(31 - len(str(work)))
+                space1 = int(30 - len(str(work)))
                 space2  = 15 - len(index)
                 res_str = str(work) + ':' + ('⠀' * space1) + str(res) + '⠀'* space2 + str(index) + '\n'
                 str_result.append(res_str)
@@ -152,4 +152,4 @@ def coefficients(File_name):
             a_count+=len(a)
             result+=a
         print(a_count)
-    return result
+    return result, excel_name_coef

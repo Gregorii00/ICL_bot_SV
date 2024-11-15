@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.2.2 coef str">
+    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.2.0 week report">
+      <change afterPath="$PROJECT_DIR$/icl-bot-sv-441816-17bee4c896d0.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Night/Report.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/Report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files_samples/Итоги 04.11-10.11.2024.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/files_samples/Итоги 04.11-10.11.2024.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files_samples/Некорректные_обращения_04_11_10_11_2024.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/files_samples/Некорректные_обращения_04_11_10_11_2024.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Night/coefficients.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/coefficients.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Night/search_exel_month.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/search_exel_month.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/additional.py" beforeDir="false" afterPath="$PROJECT_DIR$/additional.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/Завершенные вызовы очередей (55).xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,33 +51,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Training.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev_python/ICL/ReportWeek/files_samples&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Training.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/dev_python/ICL/ReportWeek"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\dev_python\ICL\ReportWeek\files_samples" />
       <recent name="C:\dev_python\ICL\ReportWeek" />
+      <recent name="C:\dev_python\ICL\ReportWeek\files_samples" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\dev_python\ICL\ReportWeek\Night" />
       <recent name="C:\dev_python\ICL\ReportWeek\Day" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.test">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="ReportWeek" />
       <option name="ENV_FILES" value="" />
@@ -271,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731680731797</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="work 1.2.0 week report">
+      <option name="closed" value="true" />
+      <created>1731686707196</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731686707196</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -288,6 +297,7 @@
     <MESSAGE value="work 1.2.0 coef relese" />
     <MESSAGE value="work 1.2.1 coef relese" />
     <MESSAGE value="work 1.2.2 coef str" />
-    <option name="LAST_COMMIT_MESSAGE" value="work 1.2.2 coef str" />
+    <MESSAGE value="work 1.2.0 week report" />
+    <option name="LAST_COMMIT_MESSAGE" value="work 1.2.0 week report" />
   </component>
 </project>
