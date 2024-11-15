@@ -119,9 +119,8 @@ def stats_operators_with_missing_bot(message):
         bot.send_message(message.chat.id, 'Добавьте 3 файла последовательно: \n Производительность операторов '
                                            '\n  Файл с оценками \n'
                                            'Файл с пропущенными')
-
+# Подсчет коэффициентов из файла
 def coefficients_bot(message):
-    print(len(files_name))
     if len(files_name) == 1:
         result = coefficients(files_name[0])
         bot.send_message(message.chat.id, result)
@@ -130,7 +129,6 @@ def coefficients_bot(message):
     else:
         bot.send_message(message.chat.id, 'Добавьте файл с производительностью операторов в формате csv')
 def stats_operators_no_missing_bot(message):
-    print(len(files_name))
     if len(files_name) == 3:
         stats_operators_with_missing(files_name[0], files_name[1], files_name[2], False)
         with open(src_files_samples + 'Статистика операторов без пропущенных.xlsx', 'rb') as f1:

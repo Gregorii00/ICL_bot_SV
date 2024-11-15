@@ -1,7 +1,7 @@
 import datetime
 import math
 from calendar import monthrange
-
+from Night.search_exel_month import scan_excel
 import pandas as pd
 
 def timetable_day(day_plus = 1):
@@ -39,100 +39,9 @@ def timetable_day(day_plus = 1):
     night = ['Куликов Максим Геннадьевич', 'Плетнёв Владислав Евгеньевич', 'Абдулина Дарья Игоревна',
              'Баландин Дмитрий Алексеевич']
 
-    def scan_excel(sheet_name, now_month):
-        now_year = datetime.datetime.now().year
-        # now_month = datetime.datetime.now().month
-        days = monthrange(now_year, now_month)[1]
-
-        df = pd.read_excel(url, sheet_name=sheet_name)
-        dw = df.values
-        name = []
-        date_data = {}
-        for i in range(1, days + 1):
-            date_data[i] = []
-        day = 1
-        # for i in range(1, ()len(dw[0])):
-        for i in range(1, ((days + 1) * 3)):
-            oper_work = {}
-
-            # С ночниками
-            if i == 1:
-                for j in range(len(dw)):
-                    if j < 138 and j > 28 and (j == 30 or (j - 30) % 3 == 0):
-                        name.append(dw[j][i])
-                    elif j < 185 and j > 138 and (j == 139 or (j - 139) % 3 == 0):
-                        name.append(dw[j][i])
-            elif (i - 3) % 3 == 0:
-                k = 0
-                for j in range(len(dw)):
-                    time_interval = []
-                    time_interval1 = ''
-                    time_interval2 = ''
-                    if j < 138 and j > 29 and (j == 30 or (j - 30) % 3 == 0):
-                        if math.isnan(dw[j][i]) and math.isnan(dw[j][i + 2]):
-                            time_interval1 = None
-                        else:
-                            if dw[j][i+1] == ':':
-                                time_interval1 = str(float(dw[j][i])+0.5) + '-' + str(float(dw[j][i + 2]))
-                            elif dw[j][i+1] == ';':
-                                time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            elif dw[j][i+1] == ':;':
-                                time_interval1 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            else:
-                                time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]))
-                        if math.isnan(dw[j + 1][i]) and math.isnan(dw[j + 1][i + 2]):
-                            time_interval2 = None
-                        else:
-                            if dw[j][i+1] == ':':
-                                time_interval2 = str(float(dw[j][i])+ 0.5) + '-' + str(float(dw[j][i + 2]))
-                            elif dw[j][i+1] == ';':
-                                time_interval2 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            elif dw[j][i+1] == ':;':
-                                time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            else:
-                                time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]))
-                        k += 1
-                        time_interval.append(time_interval1)
-                        time_interval.append(time_interval2)
-                        oper_work[name[k - 1]] = time_interval
-                    elif j < 185 and j > 138 and (j == 139 or (j - 139) % 3 == 0):
-                        if math.isnan(dw[j][i]) and math.isnan(dw[j][i + 2]):
-                            time_interval1 = None
-                        else:
-                            if dw[j][i+1] == ':':
-                                time_interval1 = str(float(dw[j][i])+0.5) + '-' + str(float(dw[j][i + 2]))
-                            elif dw[j][i+1] == ';':
-                                time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            elif dw[j][i+1] == ':;':
-                                time_interval1 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            else:
-                                time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]))
-                        if math.isnan(dw[j + 1][i]) and math.isnan(dw[j + 1][i + 2]):
-                            time_interval2 = None
-                        else:
-                            if dw[j][i+1] == ':':
-                                time_interval2 = str(float(dw[j][i])+0.5) + '-' + str(float(dw[j][i + 2]))
-                            elif dw[j][i+1] == ';':
-                                time_interval2 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            elif dw[j][i+1] == ':;':
-                                time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                            else:
-                                time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]))
-                        k += 1
-                        time_interval.append(time_interval1)
-                        time_interval.append(time_interval2)
-                        oper_work[name[k - 1]] = time_interval
-                date_data[day] = oper_work
-                day += 1
-        return name, date_data
-
-    sheet_name = 'График работы(Ноябрь1)'
-    month_number = {'Январь': 1, 'Февраль': 2, 'Март': 3, 'Апрель': 4, 'Май': 5, 'Июнь': 6, 'Июль': 7, 'Август': 8,
-                    'Сентябрь': 9, 'Октябрь': 10, 'Ноябрь': 11, 'Декабрь': 12}
-    month = sheet_name.split('(')[1][:-2]
-    name, date_data = scan_excel(sheet_name, month_number[month])
+    name, date_data, month = scan_excel()
     day_now = int(datetime.datetime.now().day) + day_plus
-    day_work_report = 'График ' + str(day_now) + '.' + str(month_number[month]) + '.2024 \n\n\n'
+    day_work_report = 'График ' + str(day_now) + '.' + str(month) + '.2024 \n\n\n'
 
     data_date_time = []
     data_date_night = []

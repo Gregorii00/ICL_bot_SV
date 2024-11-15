@@ -1,18 +1,21 @@
 import datetime
 import csv
 from additional import src_files
+from Night.search_exel_month import scan_excel
 def coefficients(File_name):
     file = src_files + File_name
-
+    excel_name_coef = {}
     with open(file, encoding='utf-8') as r_file:
+        sv_name = ['Егоров Олег Александрович', 'Жевнер Григорий Павлович', 'Павликов Илья Сергеевич',
+                   'Янцевич Маргарита Александровна', 'Киселева Дарина Максимовна']
         file_reader = csv.reader(r_file, delimiter=",")
+        day_i = ''
         count = 0
-        result = ''
-        # Считывание данных из CSV файла
+        work_time_name = {}
         for row in file_reader:
+            # if count >0 and row[0] not in sv_name:
             if count >0:
-                # Вывод строк
-                if len(row[3])>5:
+                if len(row[3]) > 5:
                     (h1, m1, s1) = row[3].split(':')
                 else:
                     (m1, s1) = row[3].split(':')
@@ -28,35 +31,111 @@ def coefficients(File_name):
                 d2 = datetime.timedelta(hours=int(h2), minutes=int(m2), seconds=int(s2))
                 mysum += d2
                 (h, m, s) = str(mysum).split(':')
-                hour = int(h)
+                hour = float(h)
                 min = ((int(h) * 3600 + int(m) * 60 + int(s))-int(h)*3600)/60
-                index = '-0'
-                res = hour
-                if min<5:
+                work_time_name[row[0]] = [hour, round(min, 2)]
+                day_i = row[10].split('.')[0]
+            count+=1
+        name, date_data, month = scan_excel()
+        result = f' Коэффициенты за {day_i}.{month} \n\n'
+        day_now = int(day_i)
+        data_date_time = []
+        data_work_time_day = {}
+        for work_time in date_data[day_now]:
+            if (date_data[day_now].get(work_time)[0] or date_data[day_now].get(work_time)[1]):
+                if date_data[day_now].get(work_time)[0]:
+                    k = []
+                    k.append(float(date_data[day_now].get(work_time)[0].split('-')[0]))
+                    k.append(float(date_data[day_now].get(work_time)[0].split('-')[1]))
+                    k.append(date_data[day_now].get(work_time)[0])
+                    k.append(work_time)
+                    data_date_time.append(k)
+                if date_data[day_now].get(work_time)[1]:
+                    k = []
+                    k.append(float(date_data[day_now].get(work_time)[1].split('-')[0]))
+                    k.append(float(date_data[day_now].get(work_time)[1].split('-')[1]))
+                    k.append(date_data[day_now].get(work_time)[1])
+                    k.append(work_time)
+                    data_date_time.append(k)
+        for work in data_date_time:
+            data_work_time_day[work[3]] = data_work_time_day.get(work[3], 0) + work[1] - work[0]
+        for work in work_time_name:
+            res_str = ''
+            if work in name:
+                if int(data_work_time_day[work] - work_time_name[work][0]) >0:
+                    res = work_time_name[work][0]
+                    if work_time_name[work][1] < 5:
+                        res = float(res)
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1)) + ',00'
+                    if work_time_name[work][1] >= 5 and work_time_name[work][1] < 15:
+                        res += 0.2
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1))+ ',83'
+                    if work_time_name[work][1] >= 15 and work_time_name[work][1] < 25:
+                        res += 0.3
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1)) + ',67'
+                    if work_time_name[work][1] >= 25 and work_time_name[work][1] < 35:
+                        res += 0.5
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1)) + ',5'
+                    if work_time_name[work][1] >= 35 and work_time_name[work][1] < 45:
+                        res += 0.7
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1)) + ',33'
+                    if work_time_name[work][1] >= 45 and work_time_name[work][1] < 55:
+                        res += 0.8
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0]-1)) + ',17'
+                    if work_time_name[work][1] >= 55:
+                        res = float(res + 1)
+                        index = '-' + str(int(data_work_time_day[work] - work_time_name[work][0])-1) + ',00'
+                    excel_name_coef[work] = index
+                    res_str = f'{work}:   {res}      {index} \n'
+                elif (data_work_time_day[work] - work_time_name[work][0]) <= 0:
+                    res = work_time_name[work][0]
+                    if work_time_name[work][1] < 5:
+                        res = float(res)
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',00'
+                    if work_time_name[work][1] >= 5 and work_time_name[work][1] < 15:
+                        res += 0.2
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0]))+ ',17'
+                    if work_time_name[work][1] >= 15 and work_time_name[work][1] < 25:
+                        res += 0.3
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',33'
+                    if work_time_name[work][1] >= 25 and work_time_name[work][1] < 35:
+                        res += 0.5
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',5'
+                    if work_time_name[work][1] >= 35 and work_time_name[work][1] < 45:
+                        res += 0.7
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',67'
+                    if work_time_name[work][1] >= 45 and work_time_name[work][1] < 55:
+                        res += 0.8
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',88'
+                    if work_time_name[work][1] >= 55:
+                        res = float(res + 1)
+                        index = '+' + str(int(data_work_time_day[work] - work_time_name[work][0])) + ',00'
+                    excel_name_coef[work] = index
+                    res_str = f'{work}:   {res}      {index} \n'
+            else:
+                res = work_time_name[work][0]
+                if work_time_name[work][1] < 5:
                     res = float(res)
-                if min>=5 and min<15:
-                    res +=0.2
+                    index = '-0,00'
+                if work_time_name[work][1] >= 5 and work_time_name[work][1] < 15:
+                    res += 0.2
                     index = '-0,83'
-                if min>=15 and min<25:
-                    res +=0.3
+                if work_time_name[work][1] >= 15 and work_time_name[work][1] < 25:
+                    res += 0.3
                     index = '-0,67'
-                if min>=25 and min<35:
-                    res +=0.5
+                if work_time_name[work][1] >= 25 and work_time_name[work][1] < 35:
+                    res += 0.5
                     index = '-0,5'
-                if min>=35 and min<45:
-                    res +=0.7
+                if work_time_name[work][1] >= 35 and work_time_name[work][1] < 45:
+                    res += 0.7
                     index = '-0,33'
-                if min>=45 and min<55:
-                    res +=0.8
+                if work_time_name[work][1] >= 45 and work_time_name[work][1] < 55:
+                    res += 0.8
                     index = '-0,17'
-                if min>=55:
-                    res = float(res+1)
-                res_str = f'{row[0]}:   {res}'
-                s=(73 - (len(res_str) + len(str(index))))
-                for k in range((73 - (len(res_str) + len(str(index))))):
-                    res_str+=' '
-                res_str+=index +'\n'
-                result+=res_str
-            count += 1
-        print(f'Всего в файле {count} строк.')
+                if work_time_name[work][1] >= 55:
+                    res = float(res + 1)
+                    index = '-0,00'
+                excel_name_coef[work] = index
+                res_str = f'{work}:   {res}      {index} \n'
+            result += res_str
     return result
