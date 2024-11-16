@@ -38,6 +38,7 @@ def coefficients(File_name):
                 day_i = row[10].split('.')[0]
             count+=1
         name, date_data, month = scan_excel()
+        print(date_data)
         result = f' Коэффициенты за {day_i}.{month} \n\n'
         day_now = int(day_i)
         data_date_time = []
@@ -151,5 +152,4 @@ def coefficients(File_name):
         for a in str_result:
             a_count+=len(a)
             result+=a
-        print(a_count)
-    return result, excel_name_coef
+    return result, excel_name_coef, day_now

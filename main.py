@@ -18,6 +18,8 @@ from Night.coefficients import coefficients
 from Day.Day import timetable_day
 from Day.Tags_name import tags_name
 
+from MyTest.test import excel_scan_wiretapping
+
 bot = telebot.TeleBot(TOKEN)
 
 files_name = []
@@ -125,8 +127,10 @@ def stats_operators_with_missing_bot(message):
 def coefficients_bot(message):
     if len(files_name) == 1:
         bot.send_message(message.chat.id, 'Рассчитываем, ожидайте' + u'\U0001F609')
-        result, coef = coefficients(files_name[0])
-        print(result)
+        result, coef_name, day_now = coefficients(files_name[0])
+        print('coef_name: ', coef_name)
+        print('day_now: ', day_now)
+        name_cef_in_formul = excel_scan_wiretapping(coef_name, day_now)
         bot.send_message(message.chat.id, result)
         delete_files_in_folder()
         files_name.clear()

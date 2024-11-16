@@ -15,4 +15,5 @@ report_week_name2 = 'Некорректные обращения. Рейтинг
 scope = ['https://www.googleapis.com/auth/spreadsheets', 'https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 credentials_file = 'icl-bot-sv-441816-3f5b548d87bf.json'
 spreadsheet_id_wiretapping = '1aV4TfDy9b96KkaLvFRiqIHjZLXlqXoqZfQg5Jdyf9hI'
+spreadsheet_id_schedule = '1MQ0hNCotH-ou1jp3ODHeBhdww1w6UhG8X588-n-db6c'
 url = 'https://docs.google.com/spreadsheets/d/1aV4TfDy9b96KkaLvFRiqIHjZLXlqXoqZfQg5Jdyf9hI/'
