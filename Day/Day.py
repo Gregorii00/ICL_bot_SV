@@ -152,10 +152,13 @@ def timetable_day(day_plus = 1):
     for worker in time_worker:
         first_name = str(time_worker[worker]).split('.')
         if first_name[1] == '':
-            day_work_report += f'{worker} \n{first_name[0]} {operators_tags.get(first_name[0], 'нет') }\n\n'
+            opers_name = operators_tags.get(first_name[0], 'нет')
+            day_work_report += f'{worker} \n{first_name[0]} {opers_name}\n\n'
         else:
-            day_work_report += (f'{worker} \n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n{first_name[1]}'
-                                f' {operators_tags.get(first_name[1], 'нет')} \n\n')
+            opers_name = operators_tags.get(first_name[0], 'нет')
+            opers_name_2 = operators_tags.get(first_name[1], 'нет')
+            day_work_report += (f'{worker} \n{first_name[0]} {opers_name}\n{first_name[1]}'
+                                f' {opers_name_2} \n\n')
     for worker in time_worker_night:
         first_name = str(time_worker_night[worker]).split('.')
         day_work_report += f'{worker}\n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n\n'
