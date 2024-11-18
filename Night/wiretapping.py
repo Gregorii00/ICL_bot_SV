@@ -22,4 +22,5 @@ def excel_scan_wiretapping(start, end, report=True):
                 k.append(data[i][3].strip())
                 k.append(int(data[i][2]))
                 data_result.append(k)
+    print(data_result)
     return data_result

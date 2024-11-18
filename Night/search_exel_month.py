@@ -2,8 +2,10 @@ import datetime
 import math
 from calendar import monthrange
 import pandas as pd
+from additional import spreadsheet_id_schedule
 def scan_excel(month_now_print = 0):
-    spreadsheet_id = '1MQ0hNCotH-ou1jp3ODHeBhdww1w6UhG8X588-n-db6c'
+    spreadsheet_id = spreadsheet_id_schedule
+
     url = 'https://docs.google.com/spreadsheets/d/' + spreadsheet_id + '/export?format=xlsx&rtpof=true&sd=true'
     sheet_name1 = 'График работы('
     sheet_name2 = '1)'
@@ -57,12 +59,12 @@ def scan_excel(month_now_print = 0):
                     if math.isnan(dw[j + 1][i]) and math.isnan(dw[j + 1][i + 2]):
                         time_interval2 = None
                     else:
-                        if dw[j][i + 1] == ':':
-                            time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]))
-                        elif dw[j][i + 1] == ';':
-                            time_interval2 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                        elif dw[j][i + 1] == ':;':
-                            time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
+                        if dw[j + 1][i + 1] == ':':
+                            time_interval2 = str(float(dw[j + 1][i]) + 0.5) + '-' + str(float(dw[j + 1][i + 2]))
+                        elif dw[j + 1][i + 1] == ';':
+                            time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]) + 0.5)
+                        elif dw[j + 1][i + 1] == ':;':
+                            time_interval2 = str(float(dw[j + 1][i]) + 0.5) + '-' + str(float(dw[j + 1][i + 2]) + 0.5)
                         else:
                             time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]))
                     k += 1
@@ -73,11 +75,11 @@ def scan_excel(month_now_print = 0):
                     if math.isnan(dw[j][i]) and math.isnan(dw[j][i + 2]):
                         time_interval1 = None
                     else:
-                        if dw[j][i + 1] == ':':
+                        if dw[j + 1][i + 1] == ':':
                             time_interval1 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]))
-                        elif dw[j][i + 1] == ';':
+                        elif dw[j + 1][i + 1] == ';':
                             time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
-                        elif dw[j][i + 1] == ':;':
+                        elif dw[j + 1][i + 1] == ':;':
                             time_interval1 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
                         else:
                             time_interval1 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]))
@@ -85,11 +87,11 @@ def scan_excel(month_now_print = 0):
                         time_interval2 = None
                     else:
                         if dw[j][i + 1] == ':':
-                            time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]))
+                            time_interval2 = str(float(dw[j + 1][i]) + 0.5) + '-' + str(float(dw[j + 1][i + 2]))
                         elif dw[j][i + 1] == ';':
-                            time_interval2 = str(float(dw[j][i])) + '-' + str(float(dw[j][i + 2]) + 0.5)
+                            time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]) + 0.5)
                         elif dw[j][i + 1] == ':;':
-                            time_interval2 = str(float(dw[j][i]) + 0.5) + '-' + str(float(dw[j][i + 2]) + 0.5)
+                            time_interval2 = str(float(dw[j + 1][i]) + 0.5) + '-' + str(float(dw[j + 1][i + 2]) + 0.5)
                         else:
                             time_interval2 = str(float(dw[j + 1][i])) + '-' + str(float(dw[j + 1][i + 2]))
                     k += 1
