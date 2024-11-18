@@ -161,6 +161,7 @@ def timetable_day(day_plus = 1):
                                 f' {opers_name_2} \n\n')
     for worker in time_worker_night:
         first_name = str(time_worker_night[worker]).split('.')
-        day_work_report += f'{worker}\n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n\n'
+        opers_name = operators_tags.get(first_name[0], 'нет')
+        day_work_report += f'{worker}\n{first_name[0]} {opers_name}\n\n'
     day_work_report += f'\n\n https://docs.google.com/spreadsheets/d/{spreadsheet_id_schedule}/export?format=xlsx&rtpof=true&sd=true'
     return day_work_report
