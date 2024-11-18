@@ -5,6 +5,8 @@ import telebot
 from telebot import types
 # модуль работы со временем
 import datetime
+
+from Night.student_scan import excel_scan_student
 # модуль для работы с базой данных
 # Вспомогательные данные
 from additional import TOKEN, src_folder_delete, src_files, src_files_samples, src_week_report, src_week_report2
@@ -127,7 +129,8 @@ def coefficients_bot(message):
     if len(files_name) == 1:
         bot.send_message(message.chat.id, 'Рассчитываем, ожидайте' + u'\U0001F609')
         result, coef_name, day_now = coefficients(files_name[0])
-        # name_cef_in_formul = excel_scan_wiretapping(coef_name, day_now)
+        final_formul = excel_scan_wiretapping(coef_name, day_now)
+        print('name_cef_in_formul: ', final_formul)
         bot.send_message(message.chat.id, result)
         delete_files_in_folder()
         files_name.clear()

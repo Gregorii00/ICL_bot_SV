@@ -4,9 +4,8 @@ from calendar import monthrange
 import pandas as pd
 from additional import spreadsheet_id_schedule
 def scan_excel(month_now_print = 0):
-    spreadsheet_id = spreadsheet_id_schedule
 
-    url = 'https://docs.google.com/spreadsheets/d/' + spreadsheet_id + '/export?format=xlsx&rtpof=true&sd=true'
+    url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id_schedule}/export?format=xlsx&rtpof=true&sd=true'
     sheet_name1 = 'График работы('
     sheet_name2 = '1)'
     month_number = {1: 'Январь', 2: 'Февраль', 3: 'Март', 4: 'Апрель', 5: 'Май', 6: 'Июнь', 7: 'Июль', 8: 'Август',

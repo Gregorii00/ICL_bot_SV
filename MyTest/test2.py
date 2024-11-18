@@ -1,14 +1,14 @@
-import csv
-import io
-import urllib.request
+from Night.student_scan import excel_scan_student
+from Night.coefficients import coefficients
+from Night.excel_scan_wiretapping import excel_scan_wiretapping
 
-id_docs = '1Sft6GGeylsaeeD4QOZR2PJj0m4BhIcvOUuiRmuuV8sc'
-url = f'https://docs.google.com/document/d/{id_docs}/export?format=csv'
+files_name = ['Производительность_операторов_24.csv']
+result, coef_name, day_now = coefficients(files_name[0], file_src_bool=False)
+print('day_now: ', day_now)
+student_result = excel_scan_student(day_now, credentials_bool=False)
+print('student_result test2: ', student_result)
+name_cef_in_formul = excel_scan_wiretapping(coef_name, day_now, student_result, credentials_bool=False)
+print('name_cef_in_formul: ', name_cef_in_formul)
 
-response = urllib.request.urlopen(url)
 
-with io.TextIOWrapper(response, encoding='utf-8') as f:
-    reader = csv.reader(f)
 
-    for row in reader:
-        print(row)

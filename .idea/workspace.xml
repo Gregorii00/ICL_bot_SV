@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.3.1 coef in formuls">
-      <change afterPath="$PROJECT_DIR$/Night/excel_scan_wiretapping.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/icl-bot-sv-441816-89d3766b0056.json" afterDir="false" />
+    <list default="true" id="40ec60c5-80f9-4b6b-856f-48d84baff8c7" name="Changes" comment="work 1.3.2 fix calendar and obuch and coef">
+      <change afterPath="$PROJECT_DIR$/Night/student_scan.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Day/Day.py" beforeDir="false" afterPath="$PROJECT_DIR$/Day/Day.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyTest/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyTest/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyTest/test2.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyTest/test2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Night/coefficients.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/coefficients.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Night/excel_scan_wiretapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/excel_scan_wiretapping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Night/search_exel_month.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/search_exel_month.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Night/wiretapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Night/wiretapping.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/additional.py" beforeDir="false" afterPath="$PROJECT_DIR$/additional.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icl-bot-sv-441816-3f5b548d87bf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/files_samples/Статистика операторов с пропущенными.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +57,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.Day.executor": "Run",
     "Python.Training.executor": "Run",
     "Python.main.executor": "Run",
     "Python.search_exel_month.executor": "Run",
@@ -83,8 +85,8 @@
       <recent name="C:\dev_python\ICL\ReportWeek\Day" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.search_exel_month">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ReportWeek" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -106,29 +108,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="search_exel_month" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ReportWeek" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Night" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Night/search_exel_month.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ReportWeek" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -141,7 +121,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyTest/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MyTest/test2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -152,8 +132,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.search_exel_month" />
-        <item itemvalue="Python.test" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731776853773</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="work 1.3.2 fix calendar and obuch and coef">
+      <option name="closed" value="true" />
+      <created>1731945553788</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1731945553788</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -345,6 +333,7 @@
     <MESSAGE value="work 1.2.0 week report" />
     <MESSAGE value="work 1.2.1 week report with excel" />
     <MESSAGE value="work 1.3.1 coef in formuls" />
-    <option name="LAST_COMMIT_MESSAGE" value="work 1.3.1 coef in formuls" />
+    <MESSAGE value="work 1.3.2 fix calendar and obuch and coef" />
+    <option name="LAST_COMMIT_MESSAGE" value="work 1.3.2 fix calendar and obuch and coef" />
   </component>
 </project>

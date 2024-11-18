@@ -2,15 +2,23 @@ import gspread
 import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 from additional import scope, credentials_file, spreadsheet_id_schedule
-def excel_scan_wiretapping(coef_name, day_now, credentials_bool = True):
+def excel_scan_student(day_now, credentials_bool = True):
     if credentials_bool:
         credentials = ServiceAccountCredentials.from_json_keyfile_name('./'+credentials_file, scopes=scope)
     else:
-        credentials = ServiceAccountCredentials.from_json_keyfile_name('../' + credentials_file, scopes=scope)
+        credentials = ServiceAccountCredentials.from_json_keyfile_name('../'+credentials_file, scopes=scope)
     client = gspread.authorize(credentials)
     sheet = client.open_by_key(spreadsheet_id_schedule)
     file1 = sheet.get_worksheet(0)
-    data = file1.get_all_values()
+    data = file1.get_notes()
+    data_name = file1.col_values(col=2)
+
+    training_name = ['Обучение 1', 'Обучение 2', 'Обучение 3', 'Обучение ICL']
+    training_excel = ['1', '2', '3', 'основа']
+    training = {}
+    for i in range(len(training_excel)):
+        training[training_excel[i]] = training_name[i]
+    result = {}
     name_opers = ['Куликов Максим Геннадьевич', 'Плетнёв Владислав Евгеньевич', 'Абдулина Дарья Игоревна',
                   'Баландин Дмитрий Алексеевич', 'Идрисалиева Ольга Ивановна', 'Третьяков Даниел Павлович',
                   'Гарипова Лейсан Миневелиевна', 'Архангельская Елена Николаевна', 'Стаценко Юлия Валентиновна',
@@ -30,43 +38,16 @@ def excel_scan_wiretapping(coef_name, day_now, credentials_bool = True):
                   'Штанкевич Ольга Петровна', 'Ханнанова Елизавета Рустамовна ', 'Крушина Наталья Анатольевна',
                   'Верле Каролина Валерьевна', 'Севостьянова Софья Евгеньевна', 'Довбышева Анна Павловна',
                   'Левен Елизавета Александровна', 'Каменщиков Александр Александрович', 'Шартнер Карина Аркадьевна']
-    col = 5 + 3*(day_now - 1)
-    formula_name = {}
-    name_cef_in_formul = {}
-    name = list(coef_name)
-    days = {}
-    row = 32
-    opers_formul = {}
-    for i in range(31, 204):
-        if data[i][1] in name and (data[i][3 + 3*(day_now - 1)] or data[i+1][3 + 3*(day_now - 1)]):
-            if data[i+3][1] in name_opers:
-                opers_formul[data[i][1]] = i+3
-            elif data[i+4][1] in name_opers:
-                opers_formul[data[i][1]] = i + 4
-    for i in opers_formul:
-        formula = str(file1.cell(row=opers_formul[i], col=col, value_render_option='FORMULA').value)
-        formula_name[i] = formula
-    for i in formula_name:
-        if formula_name[i]!='None':
-            if formula_name[i][-10] == '+' or formula_name[i][-10] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-10]
-            elif formula_name[i][-9] == '+' or formula_name[i][-9] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-9]
-            elif formula_name[i][-8] == '+' or formula_name[i][-8] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-8]
-            elif formula_name[i][-7] == '+' or formula_name[i][-7] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-7]
-            elif formula_name[i][-6] == '+' or formula_name[i][-6] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-6]
-            elif formula_name[i][-5] == '+' or formula_name[i][-5] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-5]
-            elif formula_name[i][-4] == '+' or formula_name[i][-4] == '-':
-                name_cef_in_formul[i] = formula_name[i][:-4]
-    final_formul = {}
-    # Строка: формула
-    for i in name_cef_in_formul:
-        final_formul[opers_formul[i]] = name_cef_in_formul[i] + coef_name[i]+';"")'
-    # Вставляем формулу
-    for i in final_formul:
-        file1.update_cell(row=i, col=col, value=final_formul[i])
-    return final_formul
+    col = 1 + 3*(day_now)
+    k = 1
+    print(col)
+    for i in data:
+        if len(i) >= col+1 and str(i[col]).find('уз') == 0:
+            print(str(i[col]).split('\n')[0])
+            if k == 139:
+                result[training[str(i[col]).split('\n')[0].split()[2]]] = [k + 2, data_name[k - 2]]
+            else:
+                result[training[str(i[col]).split('\n')[0].split()[2]]] = [k+1, data_name[k-2]]
+        k+=1
+    print('student_result: ', result)
+    return result

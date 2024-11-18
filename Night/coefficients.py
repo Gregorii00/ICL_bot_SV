@@ -1,9 +1,14 @@
 import datetime
 import csv
+
+from Night.student_scan import excel_scan_student
 from additional import src_files
 from Night.search_exel_month import scan_excel
-def coefficients(File_name):
-    file = src_files + File_name
+def coefficients(File_name, file_src_bool = True):
+    if file_src_bool:
+        file = src_files + File_name
+    else:
+        file = '.'+ src_files + File_name
     excel_name_coef = {}
     with open(file, encoding='utf-8') as r_file:
         sv_name = ['Егоров Олег Александрович', 'Жевнер Григорий Павлович', 'Павликов Илья Сергеевич',
@@ -37,9 +42,14 @@ def coefficients(File_name):
                 work_time_name[row[0]] = [hour, round(min, 2)]
                 day_i = row[10].split('.')[0]
             count+=1
+        day_now = int(day_i)
+        print(day_now)
+        student_result = excel_scan_student(day_now)
+        for i in student_result:
+            work_time_name[student_result[i][1]] = work_time_name[i]
+            del work_time_name[i]
         name, date_data, month = scan_excel()
         result = f' Коэффициенты за {day_i}.{month} \n\n'
-        day_now = int(day_i)
         data_date_time = []
         data_work_time_day = {}
         for work_time in date_data[day_now]:

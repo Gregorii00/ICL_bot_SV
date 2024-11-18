@@ -3,10 +3,10 @@ import math
 from calendar import monthrange
 from Night.search_exel_month import scan_excel
 import pandas as pd
+from additional import spreadsheet_id_schedule
 
 def timetable_day(day_plus = 1):
-    spreadsheet_id = '1MQ0hNCotH-ou1jp3ODHeBhdww1w6UhG8X588-n-db6c'
-    url = 'https://docs.google.com/spreadsheets/d/' + spreadsheet_id + '/export?format=xlsx&rtpof=true&sd=true'
+    url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id_schedule}/export?format=xlsx&rtpof=true&sd=true'
     operators = ['Куликов Максим Геннадьевич', 'Плетнёв Владислав Евгеньевич', 'Абдулина Дарья Игоревна',
                  'Баландин Дмитрий Алексеевич', 'Идрисалиева Ольга Ивановна', 'Третьяков Даниел Павлович',
                  'Гарипова Лейсан Миневелиевна', 'Архангельская Елена Николаевна', 'Стаценко Юлия Валентиновна',
@@ -152,12 +152,12 @@ def timetable_day(day_plus = 1):
     for worker in time_worker:
         first_name = str(time_worker[worker]).split('.')
         if first_name[1] == '':
-            day_work_report += worker + '\n' + first_name[0] + ' ' + operators_tags.get(first_name[0], 'нет') + '\n\n'
+            day_work_report += f'{worker} \n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n\n'
         else:
-            day_work_report += (worker + '\n' + first_name[0] + ' ' + operators_tags.get(first_name[0], 'нет') + '\n' +
-                                first_name[1] + ' ' + operators_tags.get(first_name[1], 'нет') + '\n\n')
+            day_work_report += (f'{worker} \n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n{first_name[1]} '
+                                f'{operators_tags.get(first_name[1], 'нет')} \n\n')
     for worker in time_worker_night:
         first_name = str(time_worker_night[worker]).split('.')
-        day_work_report += worker + '\n' + first_name[0] + ' ' + operators_tags.get(first_name[0], 'нет') + '\n\n'
-    day_work_report += '\n\n' + 'https://docs.google.com/spreadsheets/d/1MQ0hNCotH-ou1jp3ODHeBhdww1w6UhG8X588-n-db6c/edit?gid=1387237092#gid=1387237092'
+        day_work_report += f'{worker}\n{first_name[0]} {operators_tags.get(first_name[0], 'нет')}\n\n'
+    day_work_report += f'\n\n https://docs.google.com/spreadsheets/d/{spreadsheet_id_schedule}/export?format=xlsx&rtpof=true&sd=true'
     return day_work_report
